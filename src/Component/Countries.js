@@ -5,7 +5,6 @@ import Article from "./Article"
 export default function Countries() {
     const [countries, setCountries] = useState([]);
     const [searchText, setSearchText] = useState("");
-    const population = useState("");
     const regions = [
         {
             name: "Europe"
