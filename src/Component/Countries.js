@@ -2,15 +2,10 @@ import { useState, useEffect } from "react"
 import Article from "./Article"
 
 
-
 export default function Countries() {
     const [countries, setCountries] = useState([]);
     const [searchText, setSearchText] = useState("");
-
     const regions = [
-        {
-            name: "Europe"
-        },
         {
             name: "Europe"
         },
@@ -40,14 +35,13 @@ export default function Countries() {
             try {
                 const res = await fetch("https://restcountries.com/v3.1/all");
                 const data = await res.json();
-                setCountries(data);
+                setCountries(data.slice(0, 12));
             } catch (error) {
                 console.error(error);
             }
         }
         getCountries();
     }, [])
-
 
     async function searchCountry() {
         try {
@@ -67,14 +61,14 @@ export default function Countries() {
 
     async function filterByRegion(region) {
         try {
-            const res = await fetch(`https://restcountries.com/v3.1/region/${region}`
-            );
-            const data = await res.json();
-            setCountries(data);
+          const res = await fetch(`https://restcountries.com/v3.1/region/${region}`
+          );
+          const data = await res.json();
+          setCountries(data);
         } catch (error) {
-            console.error(error);
+          console.error(error);
         }
-    }
+      }
 
     function handleSearchCountry(e) {
         e.preventDefault()
@@ -109,18 +103,18 @@ export default function Countries() {
 
                     <form onSubmit={handleFilterRegion} className="md:flex flex-2">
                         <select
-                            name="filter-by-region"
-                            id="filter-by-region"
-                            className="w-52 py-3 px-4"
-                            value={regions.name}
-                            onChange={(e) => filterByRegion(e.target.value)}
-                        >
-                            {regions.map((region, index) => (
-                                <option key={index} value={region.name}>
-                                    {region.name}
-                                </option>
-                            ))}
-                        </select>
+                name="filter-by-region"
+                id="filter-by-region"
+                className="w-52 py-3 px-4"
+                value={regions.name}
+                onChange={(e) => filterByRegion(e.target.value)}
+              >
+                {regions.map((region, index) => (
+                  <option key={index} value={region.name}>
+                    {region.name}
+                  </option>
+                ))}
+              </select>
                     </form>
                 </div>
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
@@ -128,12 +122,7 @@ export default function Countries() {
                         <Article key={country.name.common} {...country} />
                     ))}
                 </div>
-                <div>
-                </div>
             </section>
-
-
         }</>
     )
 }
-
