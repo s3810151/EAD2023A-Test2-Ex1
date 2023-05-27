@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
+
 export default function SingleCountry() {
     const [country, setCountry] = useState([]);
     const { name } = useParams();
@@ -45,7 +46,8 @@ export default function SingleCountry() {
                                     <li>Population: {item.population.toLocaleString()}</li>
                                     <li>Region: {item.region}</li>
                                     <li>Subregion: {item.subregion}</li>
-                                    <li>Currencies: </li>
+                                    <li>Timezone: {item.timezones} </li>
+                                    <li>Demonyms: Female {item.demonyms.eng.f}, Male {item.demonyms.eng.m} </li>
                                 </ul>
 
                                 {item.borders && (
