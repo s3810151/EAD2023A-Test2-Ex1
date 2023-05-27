@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Countries from './Component/Countries';
 import Error from './Component/Error';
